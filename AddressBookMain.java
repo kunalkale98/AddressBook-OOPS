@@ -140,6 +140,14 @@ public class AddressBookMain {
       editContact.editContactDetail(sc, adm, addressBook);
    }
 
+	public static void deleteContact(Scanner sc, HashMap<String,List<String>> addressBook){
+       System.out.print("Enter first name to delete contact: ");
+       String deleteContact = sc.next();
+       addressBook.remove(deleteContact);
+       System.out.println("Contact Successfully Deleted");
+       toPrint(addressBook);
+   }
+
     public static void toPrint(HashMap<String,List<String>> addressBook) {
         for (Map.Entry m : addressBook.entrySet()){
             System.out.println(m.getValue());
@@ -148,20 +156,23 @@ public class AddressBookMain {
 
     public static void forChoice(Scanner sc, AddNewContact addNew, AddressBookMain adm, EditContact editContact, HashMap<String,List<String>> addressBook){
         while(true) {
-            System.out.println("1. Add Contact \n2. Edit Contact \n3. Print AddressBook");
+            System.out.println("1. Add Contact \n2. Edit Contact \n3. Delete Contact \n4. Print AddressBook");
             System.out.print("Enter Index for operation to perform: ");
             int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
+           	switch (choice) {
+					 case 1:
                     addContact(sc, addNew, addressBook);
                     break;
-                case 2:
+					 case 2:
                     editContact(sc, adm, editContact, addressBook);
                     break;
-                case 3:
+					 case 3:
+                    deleteContact(sc, addressBook);
+                    break;
+					 case 4:
                     toPrint(addressBook);
                     break;
-                default:
+					 default:
                     System.out.println("Please Enter Valid Input");
                     break;
             }
